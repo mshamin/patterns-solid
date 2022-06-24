@@ -26,7 +26,7 @@ namespace SolidMaxNumber.Implementations
             var maxRounds = _dataReader.Read();
             _dataWriter.Write("Please enter min border:");
             var minNumber = _dataReader.Read();
-            _dataWriter.Write("Please enter max border:");.
+            _dataWriter.Write("Please enter max border:");
             var maxNumber = _dataReader.Read();
             return new GameOptions(maxRounds, minNumber, maxNumber);
         }
