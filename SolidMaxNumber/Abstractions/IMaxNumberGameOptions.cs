@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SolidMaxNumber.Abstractions
 {
-    public interface IGameOptions
+    public interface IMaxNumberGameOptions
     {
         public int GetMaxRounds();
         public int GetMinNumber();

@@ -13,7 +13,10 @@ namespace SolidMaxNumber.Implementations
         {
             return int.Parse(Console.ReadLine()??"");
         }
-
+        public string ReadLine()
+        {
+            return Console.ReadLine() ?? "";
+        }
         public void Write(string text)
         {
             Console.WriteLine(text);

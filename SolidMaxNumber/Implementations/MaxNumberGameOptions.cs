@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace SolidMaxNumber.Implementations
 {
-    public class GameOptions : IGameOptions
+    public class MaxNumberGameOptions : IMaxNumberGameOptions
     {
         private int _maxRounds;
         private int _minNumber;
         private int _maxNumber;
 
-        public GameOptions (int maxRounds, int minNumber, int maxNumber)
+        public MaxNumberGameOptions (int maxRounds, int minNumber, int maxNumber)
         {
             _maxRounds = maxRounds;
             _minNumber = minNumber;

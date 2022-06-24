@@ -9,5 +9,6 @@ namespace SolidMaxNumber.Abstractions
     public interface IDataReader
     {
         public int Read();
+        public string ReadLine();
     }
 }

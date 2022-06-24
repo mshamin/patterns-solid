@@ -1,41 +1,34 @@
 ﻿using SolidMaxNumber.Abstractions;
+using SolidMaxNumber.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SolidMaxNumber.Implementations
 {
-    public class MaxNumberGame
+    public class MaxNumberGame : IGame
     {
         private int _resultNumber;
         private IDataReader _dataReader;
         private IDataWriter _dataWriter;
+        private IMaxNumberGameOptions _gameOptions;
 
         public MaxNumberGame(IDataReader dataReader
-            ,IDataWriter dataWriter)
+            , IDataWriter dataWriter, IMaxNumberGameOptions gameOptions)
         {
             _dataReader = dataReader;
             _dataWriter = dataWriter;
+            _gameOptions = gameOptions;
         }
-        public GameOptions CreateGameConfiguration()
+
+        public bool PlayGame()
         {
-            _dataWriter.Write("Welcome to MaxNumber game!");
-            _dataWriter.Write("Please enter the number of game rounds:");
-            var maxRounds = _dataReader.Read();
-            _dataWriter.Write("Please enter min border:");
-            var minNumber = _dataReader.Read();
-            _dataWriter.Write("Please enter max border:");
-            var maxNumber = _dataReader.Read();
-            return new GameOptions(maxRounds, minNumber, maxNumber);
-        }
-        public bool PlayGame(IGameOptions gameOptions)
-        {
-            _dataWriter.Write("\r\nThe game is about to start in 3..2..1\r\n");
-            _resultNumber = new Random().Next(gameOptions.GetMinNumber(), gameOptions.GetMaxNumber());
+            _resultNumber = new Random().Next(_gameOptions.GetMinNumber(), _gameOptions.GetMaxNumber());
             int userResult;
-            int maxRounds = gameOptions.GetMaxRounds();
+            int maxRounds = _gameOptions.GetMaxRounds();
             for (int i = 0; i < maxRounds; i++)
             {
                 _dataWriter.Write("Please enter number:");
@@ -43,16 +36,17 @@ namespace SolidMaxNumber.Implementations
                 if (userResult < _resultNumber)
                 {
                     _dataWriter.Write("Your number is less than mine");
-                } else if (userResult > _resultNumber)
+                }
+                else if (userResult > _resultNumber)
                 {
                     _dataWriter.Write("Your number is bigger than mine");
-                } else
+                }
+                else
                 {
-                    _dataWriter.Write("You win");
                     return true;
                 }
             }
-            _dataWriter.Write("You loose");
+
             return false;
         }
     }
